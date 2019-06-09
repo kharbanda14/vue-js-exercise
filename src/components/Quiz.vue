@@ -10,10 +10,11 @@
       <div class="form-group">
         <label for>Your Answer</label>
         <input class="form-control" type="text" v-model="answer" id>
+        <span v-if="showErr" class="text text-danger">Answer Required</span>
       </div>
 
       <div class="form-group">
-        <button class="btn btn-primary" @click="switchNext()">Next</button>
+        <button class="btn btn-primary" @click="switchNext()">{{ iteration == max_questions ? 'Finish' : 'Next' }}</button>
         <div class="float-right badge badge-success">Score {{ live_score }} / {{ max_questions }}</div>
       </div>
     </div>
@@ -32,6 +33,7 @@ import QuizInstructionsVue from './QuizInstructions.vue';
 export default {
   data: function() {
     return {
+      showErr : '',
       question: '',
       questions: [],
       /**
@@ -56,6 +58,16 @@ export default {
   },
   methods: {
     switchNext() {
+
+      /**
+       * Check for empty value
+       */
+      if (this.answer.trim().length == 0) {
+        this.showErr = true;
+        return;
+      }
+      this.showErr = false;
+
 
       const correct_ans = Math.round(eval(this.question) * 100) / 100
       

@@ -6,8 +6,8 @@
       <hr>
       <ul>
         <li>The Quiz contains maximum {{ config.max_ques }} Questions </li>
-        <li> You Can Skip Questions, However once answered or skipped you cannot go back. </li>
-        <li> Number like 2.3333333 can be round off to two digits i.e 2.33 </li>
+        <li> You Cannot Skip Questions, However once answered you cannot go back. </li>
+        <li> Number like 2.3333333 can be round off to two digits i.e 2.33, 1.589522 to 1.59 etc. </li>
         <li> There is no time limit for the Quiz </li>
       </ul>
       <strong>All The best!</strong>
