@@ -17,8 +17,10 @@
       </div>
     </div>
     <div class="container" v-if="quiz_completed">
-        <h3> {{ get_remarks() }} </h3>
-        <h4> Your Score was {{ live_score }} / {{ max_questions }} </h4>
+        <div class="text-center">
+          <h3> <strong>{{ get_remarks() }}</strong> </h3>
+          <h5> Your Score was {{ live_score }} / {{ max_questions }} </h5>
+        </div>
         <table class="table table-striped">
             <tr>
                 <th>#</th>
