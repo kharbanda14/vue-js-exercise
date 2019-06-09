@@ -14,7 +14,7 @@
         <th>Correct Answer</th>
         <th>Score</th>
       </tr>
-      <tr v-for="(ques, index) in questions" v-bind:key="index">
+      <tr v-for="(ques, index) in questions" v-bind:key="index" v-bind:class="{'table-danger' : !ques.is_correct}">
         <td>{{ index + 1 }}</td>
         <td>{{ ques.question }}</td>
         <td>{{ ques.answer }}</td>

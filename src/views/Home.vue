@@ -4,6 +4,9 @@
       <div class="col-md-6">
         <quiz-component></quiz-component>
       </div>
+      <div class="col-md-6">
+        <quiz-component></quiz-component>
+      </div>
     </div>
   </div>
 </template>
