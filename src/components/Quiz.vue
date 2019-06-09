@@ -1,6 +1,7 @@
 <template>
   <div id="quiz">
-    <div class="container" v-if="quiz_completed == false">
+    <quiz-instructions-vue :max="max_questions" @clicked="onStartQuiz" v-if="start_quiz == false" />
+    <div class="container" v-if="quiz_completed == false && start_quiz == true">
       <h3 class="badge badge-primary">Question {{ iteration }} / {{ max_questions }}</h3>
       <h2>
         <span class="badge badge-default">{{ question }}</span>
@@ -25,7 +26,7 @@
 <script>
 import * as quiz from "../lib/Quiz";
 import ScoreCardVue from './ScoreCard.vue';
-
+import QuizInstructionsVue from './QuizInstructions.vue';
 
 
 export default {
@@ -36,19 +37,24 @@ export default {
       answer: "",
       iteration: 1,
       max_questions: 5,
-      quiz_completed: false
+      quiz_completed: false,
+      start_quiz : false,
     };
   },
   components : {
-    ScoreCardVue
+    ScoreCardVue,
+    QuizInstructionsVue
   },
   methods: {
     switchNext() {
+
+      const correct_ans = Math.round(eval(this.question) * 100) / 100
+
       this.questions.push({
         question: this.question,
         answer: this.answer,
-        is_correct: eval(this.question) == this.answer,
-        correct_answer: eval(this.question)
+        is_correct: correct_ans  == this.answer,
+        correct_answer: correct_ans
       });
 
       this.question = quiz.generate_question();
@@ -60,6 +66,9 @@ export default {
 
       this.iteration++;
       this.answer = "";
+    },
+    onStartQuiz () {
+      this.start_quiz = true;
     }
   },
   computed: {

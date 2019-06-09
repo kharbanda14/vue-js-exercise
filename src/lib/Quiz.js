@@ -9,6 +9,7 @@ const msgs = [
     'Awesome Blossom!',
     'You can do better than this!',
     'Great',
+    'Keep It Up!!',
 ];
 
 export function random_num () {
@@ -27,13 +28,13 @@ export function get_remarks (score, max) {
 
     if (percentage < 50 ) {
         return msgs[0];
-    } else if (percentage > 50 && percentage < 70) {
+    } else if (percentage >= 50 && percentage < 70) {
         return msgs[2];
-    } else if (percentage > 70 && percentage < 80) {
+    } else if (percentage >= 70 && percentage < 80) {
         return msgs[3];
-    } else if (percentage > 80 && percentage < 90) {
+    } else if (percentage >= 80 && percentage < 90) {
         return msgs[4];
-    } else if (percentage > 90) {
+    } else if (percentage >= 90) {
         return msgs[1];
     }
 
