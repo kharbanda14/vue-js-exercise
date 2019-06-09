@@ -40,7 +40,7 @@ export default {
        * Custom configuration provided to the library for generating questions.
        */
       customize : {
-        max_ques : 5,
+        max_ques : 20,
         min_value : 1,
         max_value : 10,
         operators : '+,-,*,/'
