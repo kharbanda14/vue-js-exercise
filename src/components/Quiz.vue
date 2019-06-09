@@ -1,6 +1,6 @@
 <template>
   <div id="quiz">
-    <quiz-instructions-vue :max="max_questions" @clicked="onStartQuiz" v-if="start_quiz == false" />
+    <quiz-instructions-vue :max="max_questions" :config="customize" @clicked="onStartQuiz" v-if="start_quiz == false" />
     <div class="container" v-if="quiz_completed == false && start_quiz == true">
       <h3 class="badge badge-primary">Question {{ iteration }} / {{ max_questions }}</h3>
       <h2>
@@ -32,8 +32,14 @@ import QuizInstructionsVue from './QuizInstructions.vue';
 export default {
   data: function() {
     return {
-      question: quiz.generate_question(),
+      question: '',
       questions: [],
+      customize : {
+        max_ques : 5,
+        min_value : 1,
+        max_value : 10,
+        operators : '+,-,*,/'
+      },
       answer: "",
       iteration: 1,
       max_questions: 5,
@@ -68,7 +74,10 @@ export default {
       this.answer = "";
     },
     onStartQuiz () {
-      this.start_quiz = true;
+      this.start_quiz = true;      
+      quiz.initialize(this.customize);
+      this.max_questions = this.customize.max_ques;
+      this.question = quiz.generate_question();
     }
   },
   computed: {

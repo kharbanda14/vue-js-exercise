@@ -1,8 +1,8 @@
-const min = 1;
+var min = 1;
 
-const max = 10;
+var max = 10;
 
-const operators = ['+', '-', '*', '/'];
+var operators = ['+', '-', '*', '/'];
 
 const msgs = [
     'You Need To Work Hard!',
@@ -11,6 +11,12 @@ const msgs = [
     'Great',
     'Keep It Up!!',
 ];
+
+export function initialize (data) {
+    min = parseInt(data.min_value);
+    max = parseInt(data.max_value);
+    operators = data.operators.split(',');
+}
 
 export function random_num () {
     return Math.floor(Math.random() * (max - min + 1)) + min;
