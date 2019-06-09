@@ -17,42 +17,16 @@
       </div>
     </div>
     <div class="container" v-if="quiz_completed">
-        <div class="text-center">
-          <h3> <strong>{{ get_remarks() }}</strong> </h3>
-          <h5> Your Score was {{ live_score }} / {{ max_questions }} </h5>
-        </div>
-        <table class="table table-striped">
-            <tr>
-                <th>#</th>
-                <th>Question</th>
-                <th>Your Answer</th>
-                <th>Correct Answer</th>
-                <th>Score</th>
-            </tr>
-            <tr v-for="(ques, index) in questions" v-bind:key="index">
-                <td> {{ index + 1 }} </td>
-                <td>{{ ques.question }}</td>
-                <td> {{ ques.answer }} </td>
-                <td> {{ ques.correct_answer }} </td>
-                <td> {{ ques.is_correct ? '1' : '0'}} </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <th> Total </th>
-                <th> {{ live_score }} </th>
-            </tr>
-        </table>
-        <ul class="list-group"> 
-            
-        </ul>
+      <score-card-vue :questions="questions" />
     </div>
   </div>
 </template>
 
 <script>
 import * as quiz from "../lib/Quiz";
+import ScoreCardVue from './ScoreCard.vue';
+
+
 
 export default {
   data: function() {
@@ -62,8 +36,11 @@ export default {
       answer: "",
       iteration: 1,
       max_questions: 5,
-      quiz_completed : false
+      quiz_completed: false
     };
+  },
+  components : {
+    ScoreCardVue
   },
   methods: {
     switchNext() {
@@ -83,9 +60,6 @@ export default {
 
       this.iteration++;
       this.answer = "";
-    },
-    get_remarks () {
-        return quiz.get_remarks(this.live_score, this.max_questions )
     }
   },
   computed: {
@@ -100,5 +74,4 @@ export default {
 </script>
 
 <style>
-
 </style>
