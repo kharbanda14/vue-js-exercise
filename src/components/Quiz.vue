@@ -34,6 +34,9 @@ export default {
     return {
       question: '',
       questions: [],
+      /**
+       * Custom configuration provided to the library for generating questions.
+       */
       customize : {
         max_ques : 5,
         min_value : 1,
@@ -55,7 +58,10 @@ export default {
     switchNext() {
 
       const correct_ans = Math.round(eval(this.question) * 100) / 100
-
+      
+      /**
+       * Adds question to the list
+       */
       this.questions.push({
         question: this.question,
         answer: this.answer,
@@ -63,6 +69,9 @@ export default {
         correct_answer: correct_ans
       });
 
+      /**
+       * Generate a new question
+       */
       this.question = quiz.generate_question();
 
       if (this.iteration == this.max_questions) {
@@ -73,6 +82,9 @@ export default {
       this.iteration++;
       this.answer = "";
     },
+    /**
+     * Starts the quiz and updates the configuration provided
+     */
     onStartQuiz () {
       this.start_quiz = true;      
       quiz.initialize(this.customize);
